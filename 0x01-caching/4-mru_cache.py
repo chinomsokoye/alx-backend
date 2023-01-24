@@ -10,6 +10,7 @@ class MRUCache(BaseCaching):
     """ class MRUCache """
 
     def __init__(self):
+        """ Initializes class/function """
         super().__init__()
         self.mru_order = OrderedDict()
 
