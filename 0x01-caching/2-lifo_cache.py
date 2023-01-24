@@ -8,6 +8,7 @@ class LIFOCache(BaseCaching):
     """ class LIFOCache """
 
     def __init__(self):
+        """ Initializes class/function """
         super().__init__()
         self.key_indexes = []
 
