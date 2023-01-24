@@ -52,8 +52,8 @@ $ cat base_caching.py
 
 Class BaseCaching():
       """ BaseCaching defines:
-      	  - constants of your caching system
-	  - where your data are stored (in a dictionary)
+      - constants of your caching system
+      - where your data are stored (in a dictionary)
       """
       MAX_ITEM = 4
 
