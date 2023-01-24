@@ -8,7 +8,7 @@ class LFUCache(BaseCaching):
     """ class LFUCache """
 
     def __init__(self):
-        """ Initialize """
+        """ Initialize class/function """
         super().__init__()
         self.keys = []
         self.uses = {}
