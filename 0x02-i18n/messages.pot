@@ -16,12 +16,3 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
-
-#: templates/3-index.html:5
-msgid "home_title"
-msgstr ""
-
-#: templates/3-index.html:9
-msgid "home_header"
-msgstr ""
-
