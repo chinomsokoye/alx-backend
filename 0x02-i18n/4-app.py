@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 ''' Basic Flask app and Babel setup, Get Locale from request
-Parameterized templates, Force locale with URL parameter'''
+Parameterized templates, Force locale with URL parameter '''
 
 from flask import Flask, request, render_template
 from flask_babel import Babel, gettext
