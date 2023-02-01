@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
 ''' Basic Flask app and Babel setup, Get Locale from request
-Parameterized templates, Force locale with URL parameter
-Use user locale '''
+Parameterized templates, Force locale with URL parameter '''
 
-from flask import Flask, request, render_template, g
-from flask_babel import Babel, gettext
+from typing import Union
+from flask import Flask, render_template, request, g
+from os import getenv
+from flask_babel import Babel
 
 app = Flask(__name__)
 babel = Babel(app)
+
+
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
 
 
 class Config:
@@ -17,13 +26,7 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
-app.config.from_object(Config)
-users = {
-    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
-    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
-    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
-    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
-}
+app.config.from_object('6-app.Config')
 
 
 @app.before_request
@@ -33,28 +36,29 @@ def before_request():
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     ''' Determine best match with supported languages '''
     locale = request.args.get('locale')
-    if locale in app.config['LANGUAGES']:
+    if locale and locale in app.config['LANGUAGES']:
         return locale
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route("/", methods=["GET"], strict_slashes=False)
-def hello_world():
+def hello_world() -> str:
     ''' Output templates '''
     return render_template('6-index.html')
 
 
-def get_user():
+def get_user() -> Union[dict, None]:
     ''' Returns a user dictionary or None '''
-    Id = request.args.get('login_as')
-    if Id and int(Id) in users:
-        return users[int(Id)]
+    if request.args.get('login_as'):
+        user = int(request.args.get('login_as'))
+        if user in users:
+            return users.get(user)
     else:
         return None
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0", port="5000")
