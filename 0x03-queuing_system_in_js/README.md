@@ -10,7 +10,7 @@ Curriculuum <br>
 * [Redis quick start](https://www.redis.io/docs//getting-started/)
 * [Redis client interface](https://www.redis.io/docs/ui/cli/)
 * [Redis client for Node JS](https://www.github.com/redis/node-redis)
-* [Kue](https://www.github.com/Automattic/kue) _deprecated but still used in the industy_
+* [Kue](https://www.github.com/Automattic/kue) _deprecated but still used in the industry_
 
 ## Requirements
 
